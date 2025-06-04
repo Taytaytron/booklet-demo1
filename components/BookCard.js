@@ -1,4 +1,6 @@
-export default function BookCard({ title, author, description, image }) {
+import Link from 'next/link';
+
+export default function BookCard({ id, title, author, description, image }) {
   return (
     <div style={{
       border: '1px solid #ddd',
@@ -12,6 +14,12 @@ export default function BookCard({ title, author, description, image }) {
       <h3>{title}</h3>
       <p><em>{author}</em></p>
       <p style={{ fontSize: '0.85rem' }}>{description}</p>
+      <Link href={`/book/${id}`} style={{
+        marginTop: '0.5rem',
+        display: 'inline-block',
+        color: 'blue',
+        textDecoration: 'underline'
+      }}>View Details</Link>
     </div>
   );
 }
