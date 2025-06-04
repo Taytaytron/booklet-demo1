@@ -1,2 +1,1 @@
-# booklet-demo1
-booklet-demo1
+# Booklet Demo\nThis is a demo Next.js project for book sharing.
