@@ -1,0 +1,1 @@
+export const books = [{ title: 'Book 1' }, { title: 'Book 2' }];
