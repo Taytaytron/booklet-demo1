@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SharingPage() {
   const [form, setForm] = useState({
@@ -9,6 +9,13 @@ export default function SharingPage() {
   });
 
   const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const savedBooks = localStorage.getItem('booklet-books');
+    if (savedBooks) {
+      setBooks(JSON.parse(savedBooks));
+    }
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -21,7 +28,12 @@ export default function SharingPage() {
       return;
     }
 
-    setBooks([...books, { ...form, id: books.length + 1 }]);
+    const newBook = { ...form, id: Date.now() };
+    const updatedBooks = [...books, newBook];
+
+    setBooks(updatedBooks);
+    localStorage.setItem('booklet-books', JSON.stringify(updatedBooks));
+
     setForm({ title: '', author: '', description: '', image: '' });
   };
 
