@@ -33,23 +33,85 @@ export default function SharingPage() {
         <input type="text" name="image" placeholder="Image URL" value={form.image} onChange={handleChange} />
         <button type="submit">Add Book</button>
       </form>
+<form onSubmit={handleSubmit} style={{
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  maxWidth: '400px',
+  marginBottom: '2rem'
+}}>
+  <input
+    name="title"
+    placeholder="Book Title"
+    value={form.title}
+    onChange={handleChange}
+    required
+    style={{
+      padding: '0.5rem',
+      borderRadius: '6px',
+      border: '1px solid #ccc'
+    }}
+  />
 
-      {books.length > 0 && (
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          {books.map((book) => (
-            <div key={book.id} style={{
-              border: '1px solid #ccc',
-              padding: '1rem',
-              maxWidth: '200px'
-            }}>
-              {book.image && <img src={book.image} alt={book.title} style={{ width: '100%' }} />}
-              <h3>{book.title}</h3>
-              <p><em>{book.author}</em></p>
-              <p style={{ fontSize: '0.8rem' }}>{book.description}</p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
+  <input
+    name="author"
+    placeholder="Author"
+    value={form.author}
+    onChange={handleChange}
+    required
+    style={{
+      padding: '0.5rem',
+      borderRadius: '6px',
+      border: '1px solid #ccc'
+    }}
+  />
+
+  <textarea
+    name="description"
+    placeholder="Description"
+    value={form.description}
+    onChange={handleChange}
+    rows="3"
+    style={{
+      padding: '0.5rem',
+      borderRadius: '6px',
+      border: '1px solid #ccc',
+      resize: 'vertical'
+    }}
+  />
+
+  <input
+    name="image"
+    placeholder="Image URL"
+    value={form.image}
+    onChange={handleChange}
+    style={{
+      padding: '0.5rem',
+      borderRadius: '6px',
+      border: '1px solid #ccc'
+    }}
+  />
+
+  <button type="submit" style={{
+    padding: '0.6rem',
+    borderRadius: '6px',
+    backgroundColor: '#0070f3',
+    color: 'white',
+    fontWeight: 'bold',
+    border: 'none',
+    cursor: 'pointer'
+  }}>
+    Add Book
+  </button>
+</form>
+
+       <div key={book.id} style={{
+  border: '1px solid #ddd',
+  borderRadius: '8px',
+  padding: '1rem',
+  width: '200px',
+  fontFamily: 'Arial',
+  background: '#fafafa',
+  boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
+}}>
+
