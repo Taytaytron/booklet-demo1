@@ -9,13 +9,18 @@ export default function ExplorePage() {
     const savedBooks = localStorage.getItem('booklet-books');
     if (savedBooks) {
       const parsedBooks = JSON.parse(savedBooks);
-      // Yeni eklenen kitap en başta gözüksün
       setBooks(parsedBooks.reverse());
     }
   }, []);
 
   const goToDetails = (id) => {
     router.push(`/book/${id}`);
+  };
+
+  const handleDelete = (id) => {
+    const updatedBooks = books.filter((book) => book.id !== id);
+    setBooks(updatedBooks);
+    localStorage.setItem('booklet-books', JSON.stringify(updatedBooks));
   };
 
   return (
@@ -66,17 +71,29 @@ export default function ExplorePage() {
               <p><em>{book.author}</em></p>
               <p style={{ fontSize: '0.8rem' }}>{book.description}</p>
 
-              <button onClick={() => goToDetails(book.id)} style={{
-                marginTop: '0.5rem',
-                padding: '0.4rem 0.8rem',
-                borderRadius: '6px',
-                backgroundColor: '#0070f3',
-                color: 'white',
-                border: 'none',
-                cursor: 'pointer'
-              }}>
-                View Details
-              </button>
+              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.8rem' }}>
+                <button onClick={() => goToDetails(book.id)} style={{
+                  padding: '0.4rem 0.8rem',
+                  borderRadius: '6px',
+                  backgroundColor: '#0070f3',
+                  color: 'white',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}>
+                  Detay
+                </button>
+
+                <button onClick={() => handleDelete(book.id)} style={{
+                  padding: '0.4rem 0.8rem',
+                  borderRadius: '6px',
+                  backgroundColor: '#e00',
+                  color: 'white',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}>
+                  Sil
+                </button>
+              </div>
             </div>
           ))}
         </div>
