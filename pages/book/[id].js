@@ -1,0 +1,1 @@
+import { useRouter } from 'next/router'; export default function Book() { const router = useRouter(); return <div>Book ID: {router.query.id}</div>; }
